@@ -37,7 +37,7 @@ EOF
 
 dir="/opt/appdata/plex/database/Library/Application Support/Plex Media Server/Metadata/"
 find "$dir" -type d > metafolders.txt
-eplist="metafolders.txt"
+eplist=$(tail -r "metafolders.txt")
 total=$(cat $eplist | wc  -l)
 BAR='████████████████████████████████████████████████████████████████'
 sleep 1
@@ -58,10 +58,11 @@ if [[ "$line" =~ .*"com.plexapp.agents.localmedia".*"art".* ]]; then rm -r "$lin
 if [[ "$line" =~ .*"bundle".*"Uploads".* ]]; then rm -r "$line" -v >> ./dietplex.log; fi
 
 counter=$((counter+1))
-done < "$eplist"
 x=$(echo $(bc <<<"scale=2; $counter / $total * 100"))
 int=${x%.*}
 echo -ne "\r|${BAR:0:$int} $x%|"
+done < "$eplist"
+
 rm metafolders.txt
 
 sleep 1
