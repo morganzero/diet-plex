@@ -45,17 +45,17 @@ echo
 echo "Losing overweight:"
 while IFS= read -r line
 do
-if [[ "$line" =~ .*"com.plexapp.agents.thetvdb".*"thumbs".* ]]; then rm -r "$line" -v >> ./dietplex.log; fi
-if [[ "$line" =~ .*"com.plexapp.agents.localmedia".*"thumbs".* ]]; then rm -r "$line" -v >> ./dietplex.log; fi
-if [[ "$line" =~ .*"com.plexapp.agents.thetvdb".*"posters".* ]]; then rm -r "$line" -v >> ./dietplex.log; fi
-if [[ "$line" =~ .*"com.plexapp.agents.themoviedb".*"posters".* ]]; then rm -r "$line" -v >> ./dietplex.log; fi
-if [[ "$line" =~ .*"com.plexapp.agents.imdb".*"posters".* ]]; then rm -r "$line" -v >> ./dietplex.log; fi
-if [[ "$line" =~ .*"com.plexapp.agents.localmedia".*"posters".* ]]; then rm -r "$line" -v >> ./dietplex.log; fi
-if [[ "$line" =~ .*"com.plexapp.agents.thetvdb".*"art".* ]]; then rm -r "$line" -v >> ./dietplex.log; fi
-if [[ "$line" =~ .*"com.plexapp.agents.themoviedb".*"art".* ]]; then rm -r "$line" -v >> ./dietplex.log; fi
-if [[ "$line" =~ .*"com.plexapp.agents.imdb".*"art".* ]]; then rm -r "$line" -v >> ./dietplex.log; fi
-if [[ "$line" =~ .*"com.plexapp.agents.localmedia".*"art".* ]]; then rm -r "$line" -v >> ./dietplex.log; fi
-if [[ "$line" =~ .*"bundle".*"Uploads".* ]]; then rm -r "$line" -v >> ./dietplex.log; fi
+if [[ "$line" =~ .*"com.plexapp.agents.thetvdb".*"thumbs".* ]]; then rm -rf "$line" -v >> ./dietplex.log; fi
+if [[ "$line" =~ .*"com.plexapp.agents.localmedia".*"thumbs".* ]]; then rm -rf "$line" -v >> ./dietplex.log; fi
+if [[ "$line" =~ .*"com.plexapp.agents.thetvdb".*"posters".* ]]; then rm -rf "$line" -v >> ./dietplex.log; fi
+if [[ "$line" =~ .*"com.plexapp.agents.themoviedb".*"posters".* ]]; then rm -rf "$line" -v >> ./dietplex.log; fi
+if [[ "$line" =~ .*"com.plexapp.agents.imdb".*"posters".* ]]; then rm -rf "$line" -v >> ./dietplex.log; fi
+if [[ "$line" =~ .*"com.plexapp.agents.localmedia".*"posters".* ]]; then rm -rf "$line" -v >> ./dietplex.log; fi
+if [[ "$line" =~ .*"com.plexapp.agents.thetvdb".*"art".* ]]; then rm -rf "$line" -v >> ./dietplex.log; fi
+if [[ "$line" =~ .*"com.plexapp.agents.themoviedb".*"art".* ]]; then rm -rf "$line" -v >> ./dietplex.log; fi
+if [[ "$line" =~ .*"com.plexapp.agents.imdb".*"art".* ]]; then rm -rf "$line" -v >> ./dietplex.log; fi
+if [[ "$line" =~ .*"com.plexapp.agents.localmedia".*"art".* ]]; then rm -rf "$line" -v >> ./dietplex.log; fi
+if [[ "$line" =~ .*"bundle".*"Uploads".* ]]; then rm -rf "$line" -v >> ./dietplex.log; fi
 
 counter=$((counter+1))
 x=$(echo $(bc <<<"scale=2; $counter / $total * 100"))
