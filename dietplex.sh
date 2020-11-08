@@ -46,17 +46,17 @@ echo "Losing overweight:"
 functionx () {
 while IFS= read -r line
 do
-if [[ "$line" =~ .*"com.plexapp.agents.thetvdb".*"thumbs".* ]]; then rm -rf "$line" -v >> ./dietplex.log; fi
-if [[ "$line" =~ .*"com.plexapp.agents.localmedia".*"thumbs".* ]]; then rm -rf "$line" -v >> ./dietplex.log; fi
-if [[ "$line" =~ .*"com.plexapp.agents.thetvdb".*"posters".* ]]; then rm -rf "$line" -v >> ./dietplex.log; fi
-if [[ "$line" =~ .*"com.plexapp.agents.themoviedb".*"posters".* ]]; then rm -rf "$line" -v >> ./dietplex.log; fi
-if [[ "$line" =~ .*"com.plexapp.agents.imdb".*"posters".* ]]; then rm -rf "$line" -v >> ./dietplex.log; fi
-if [[ "$line" =~ .*"com.plexapp.agents.localmedia".*"posters".* ]]; then rm -rf "$line" -v >> ./dietplex.log; fi
-if [[ "$line" =~ .*"com.plexapp.agents.thetvdb".*"art".* ]]; then rm -rf "$line" -v >> ./dietplex.log; fi
-if [[ "$line" =~ .*"com.plexapp.agents.themoviedb".*"art".* ]]; then rm -rf "$line" -v >> ./dietplex.log; fi
-if [[ "$line" =~ .*"com.plexapp.agents.imdb".*"art".* ]]; then rm -rf "$line" -v >> ./dietplex.log; fi
-if [[ "$line" =~ .*"com.plexapp.agents.localmedia".*"art".* ]]; then rm -rf "$line" -v >> ./dietplex.log; fi
-if [[ "$line" =~ .*"bundle".*"Uploads".* ]]; then rm -rf "$line" -v >> ./dietplex.log; fi
+if [[ "$line" =~ .*"com.plexapp.agents.thetvdb".*"thumbs".* ]]; then rm -rf "$line" -v | tee -a ./dietplex.log; fi
+if [[ "$line" =~ .*"com.plexapp.agents.localmedia".*"thumbs".* ]]; then rm -rf "$line" -v | tee -a ./dietplex.log; fi
+if [[ "$line" =~ .*"com.plexapp.agents.thetvdb".*"posters".* ]]; then rm -rf "$line" -v | tee -a ./dietplex.log; fi
+if [[ "$line" =~ .*"com.plexapp.agents.themoviedb".*"posters".* ]]; then rm -rf "$line" -v | tee -a ./dietplex.log; fi
+if [[ "$line" =~ .*"com.plexapp.agents.imdb".*"posters".* ]]; then rm -rf "$line" -v | tee -a ./dietplex.log; fi
+if [[ "$line" =~ .*"com.plexapp.agents.localmedia".*"posters".* ]]; then rm -rf "$line" -v | tee -a ./dietplex.log; fi
+if [[ "$line" =~ .*"com.plexapp.agents.thetvdb".*"art".* ]]; then rm -rf "$line" -v | tee -a ./dietplex.log; fi
+if [[ "$line" =~ .*"com.plexapp.agents.themoviedb".*"art".* ]]; then rm -rf "$line" -v | tee -a ./dietplex.log; fi
+if [[ "$line" =~ .*"com.plexapp.agents.imdb".*"art".* ]]; then rm -rf "$line" -v | tee -a ./dietplex.log; fi
+if [[ "$line" =~ .*"com.plexapp.agents.localmedia".*"art".* ]]; then rm -rf "$line" -v | tee -a ./dietplex.log; fi
+if [[ "$line" =~ .*"bundle".*"Uploads".* ]]; then rm -rf "$line" -v | tee -a ./dietplex.log; fi
 
 counter=$((counter+1))
 x=$(echo $(bc <<<"scale=2; $counter / $total * 100"))
@@ -67,7 +67,7 @@ done < "$eplist"
 rm metafolders.txt
 
 }
-functionx >/dev/null 2>&1
+functionx
 
 sleep 1
 
@@ -81,7 +81,7 @@ while true; do
 
 cat <<EOF
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-💡 Wanna lose an additional $transcodersize?
+💡 Wanna lose additional $transcodersize?
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
       [Y]  :   Yes remove it!
