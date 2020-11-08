@@ -37,7 +37,7 @@ EOF
 
 dir="/opt/appdata/plex/database/Library/Application Support/Plex Media Server/Metadata/"
 find "$dir" -type d > metafolders.txt
-eplist=$(tail -r "metafolders.txt")
+eplist=$(tail -q "metafolders.txt")
 total=$(cat $eplist | wc  -l)
 BAR='████████████████████████████████████████████████████████████████'
 sleep 1
