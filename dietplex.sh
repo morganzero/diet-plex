@@ -39,10 +39,11 @@ dir="/opt/appdata/plex/database/Library/Application Support/Plex Media Server/Me
 find "$dir" -type d > metafolders.txt
 eplist=$("metafolders.txt")
 total=$(cat $eplist | wc  -l)
-BAR='████████████████████████████████████████████████████████████████'
+BAR='▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓'
 sleep 1
 echo
 echo "Losing overweight:"
+functionx () {
 while IFS= read -r line
 do
 if [[ "$line" =~ .*"com.plexapp.agents.thetvdb".*"thumbs".* ]]; then rm -rf "$line" -v >> ./dietplex.log; fi
@@ -64,6 +65,9 @@ echo -ne "\r|${BAR:0:$int} $x%|"
 done < "$eplist"
 
 rm metafolders.txt
+
+}
+functionx >/dev/null 2>&1
 
 sleep 1
 
