@@ -1,8 +1,8 @@
 #!/bin/bash
-echo "Calculating weight..."
-sleep 5
-echo "Go grab something to drink while you wait."
+echo "Calculating weight. This might take a while"
 sleep 2
+echo "Go grab something to drink while you wait."
+sleep 1
 echo "...maybe something with zero sugar."
 sleep 3
 plexdir="/opt/appdata/plex/database/Library/Application Support/Plex Media Server/"
@@ -10,7 +10,7 @@ plexsize=$(du -hs "$plexdir" | cut -f1)
 
 cat <<EOF
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🥋 Plex Diet | Extensive Plex Maintenance | Current Plex size: $plexsize
+🥋 Plex Diet       |     Extensive Plex Maintenance     |       v1.2
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 EOF
 
@@ -28,6 +28,8 @@ then
 anidbsize=$(du -hs "$anidbdir" | cut -f1)
 echo "HAMA (Anidb)       :  $anidbsize"
 fi
+echo
+echo "Total size         :  $plexsize"
 
 cat <<EOF
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -61,31 +63,32 @@ x=$(echo $(bc <<<"scale=2; $counter / $total * 100"))
 int=${x%.*}
 echo -ne "\r|${BAR:0:$int} $x%|"
 rm metafolders.txt
-echo
-echo
+
 sleep 1
+
 echo
 echo "🏆 Diet succeeded! Weight reached: $metadatasize"
 echo
+
 sleep 1
+
+while true; do
 
 cat <<EOF
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 💡 Lose additional weight?: $transcodersize
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+      [Y]  :   Yes remove it!"
+      [N]  :   No, leave it!"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 EOF
 
-sleep 1
-while true; do
-    echo " [Y]  :   Yes remove it!"
-    echo " [N]  :   No, leave it!"
-echo
-echo
-echo ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     read -r -p "↘️  Make your choice | Type Y/N and press [ENTER]:  " thisisit
 echo
     case $thisisit in
-        [yY]* ) rm -f "$transcoderdir{*,.*}"; break;;
+        [yY]* ) rm -r "$transcoderdir"; break;;
         [nN]* ) break;;
         * ) echo
         echo "🔪 Don't be a retard, please chose either Y or N"
