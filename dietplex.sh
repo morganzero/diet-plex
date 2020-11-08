@@ -2,9 +2,9 @@
 echo "Calculating weight. This might take a while"
 sleep 2
 echo "Go grab something to drink while you wait."
-sleep 1
+sleep 2
 echo "...maybe something with zero sugar."
-sleep 3
+sleep 1
 plexdir="/opt/appdata/plex/database/Library/Application Support/Plex Media Server/"
 plexsize=$(du -hs "$plexdir" | cut -f1)
 
@@ -37,7 +37,7 @@ EOF
 
 dir="/opt/appdata/plex/database/Library/Application Support/Plex Media Server/Metadata/"
 find "$dir" -type d > metafolders.txt
-eplist=$(tail -q "metafolders.txt")
+eplist=$(tail -f "metafolders.txt")
 total=$(cat $eplist | wc  -l)
 BAR='████████████████████████████████████████████████████████████████'
 sleep 1
