@@ -39,7 +39,7 @@ dir="/opt/appdata/plex/database/Library/Application Support/Plex Media Server/Me
 find "$dir" -type d > metafolders.txt
 eplist="metafolders.txt"
 total=$(cat $eplist | wc  -l)
-BAR='▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓'
+BAR='████████████████████████████████████████████████████████████████'
 sleep 1
 echo
 echo "Losing overweight:"
