@@ -81,11 +81,15 @@ while true; do
 
 cat <<EOF
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-💡 Lose additional weight?: $transcodersize
+💡 Wanna lose an additional $transcodersize?
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-      [Y]  :   Yes remove it!"
-      [N]  :   No, leave it!"
+      [Y]  :   Yes remove it!
+      [N]  :   No, leave it!
+
+Disclaimer: Cleaning this cache is very effective. A possible downside is
+longer loading time when browsing to an item or a library which got its 
+cached images erased.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 EOF
