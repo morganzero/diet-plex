@@ -15,13 +15,17 @@ cat <<EOF
 EOF
 
 metadatadir="/opt/appdata/plex/database/Library/Application Support/Plex Media Server/Metadata/"
+if [ -d "$metadatadir" ]
+then
 metadatasize=$(du -hs "$metadatadir" | cut -f1)
 echo "Metadata           :  $metadatasize"
-
+fi
 transcoderdir="/opt/appdata/plex/database/Library/Application Support/Plex Media Server/Cache/PhotoTranscoder/"
+if [ -d "$transcoderdir" ]
+then
 transcodersize=$(du -hs "$transcoderdir" | cut -f1)
 echo "PhotoTranscoder    :  $transcodersize"
-
+fi
 anidbdir="/opt/appdata/plex/database/Library/Application Support/Plex Media Server/Plug-in Support/Data/com.plexapp.agents.hama/DataItems/"
 if [ -d "$anidbdir" ]
 then
