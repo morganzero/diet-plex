@@ -93,7 +93,7 @@ cat <<EOF
       [N]  :   No, leave it!
 
 Disclaimer: Cleaning this cache is very effective. A possible downside is
-longer loading time when browsing to an item or a library which got its 
+longer loading time when browsing to an item or a library which got its
 cached images erased.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -132,6 +132,37 @@ EOF
 echo
     case $thisisit in
         [yY]* ) find "$anidbdir" -mindepth 1 -exec rm -r {} \; && echo "Done!"; break;;
+        [nN]* ) break;;
+        * ) echo "🔪 Don't be a retard, please chose either Y or N";;
+    esac
+done
+fi
+
+cat <<EOF
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+sleep 2
+syncdir="/opt/appdata/plex/database/Library/Application Support/Plex Media Server/Plug-in Support/Data/com.plexapp.agents.hama/DataItems/"
+if [ -d "$syncdir" ]
+then
+anidbsize=$(du -hs "$syncdir" | cut -f1)
+while true; do
+
+cat <<EOF
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Synced items are using: $syncdir - Wanna remove them?
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+    [Y]  :   Yeah, burn 'em! 🔥
+    [N]  :   Nah, it's okay!
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+EOF
+
+  read -r -p "↘️  Make your choice | Type Y/N and press [ENTER]:  " thisisit
+echo
+    case $thisisit in
+        [yY]* ) find "$syncdir" -mindepth 1 -exec rm -r {} \; && echo "Done!"; break;;
         [nN]* ) break;;
         * ) echo "🔪 Don't be a retard, please chose either Y or N";;
     esac
