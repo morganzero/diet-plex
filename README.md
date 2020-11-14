@@ -29,3 +29,6 @@ Enjoy!
 
 If you want to support me (does not equal development): <br>
 <a href="https://www.paypal.com/paypalme/sizemattrs/1" target=blank><img src=http://imgur.com/WSVZSTW.png alt="Buy Me a Coffee" height=75 width=150 align='center'></a> &nbsp;&nbsp; or &nbsp;&nbsp; <a href="https://www.paypal.com/paypalme/sizemattrs/3" target=blank><img src=http://imgur.com/gnvlm6n.jpg alt="Buy Me a Beer" height=75 width=150 align='center'></a>
+
+
+A big thank you goes out to Ritualist for all the help. And also to Suspense for inspiring me to make one of my own.
