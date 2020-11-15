@@ -10,7 +10,9 @@ plexsize=$(du -hs "$plexdir" | cut -f1)
 
 cat <<EOF
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🥋 Plex Diet       |     Extensive Plex Maintenance     |       v1.2
+     Diet-Plex     |     Extensive Plex Maintenance     |      v1.2.1
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                  https://github.com/morganzero/diet-plex/              
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 EOF
 
@@ -31,6 +33,12 @@ if [ -d "$anidbdir" ]
 then
 anidbsize=$(du -hs "$anidbdir" | cut -f1)
 echo "HAMA (Anidb)       :  $anidbsize"
+fi
+syncdir="/opt/appdata/plex/database/Library/Application Support/Plex Media Server/Cache/Transcode/Sync+/"
+if [ -d "$syncdir" ]
+then
+syncsize=$(du -hs "$syncdir" | cut -f1)
+echo "Metadata           :  $syncsize"
 fi
 echo
 echo "Total size         :  $plexsize"
@@ -143,15 +151,15 @@ cat <<EOF
 EOF
 
 sleep 2
-syncdir="/opt/appdata/plex/database/Library/Application Support/Plex Media Server/Plug-in Support/Data/com.plexapp.agents.hama/DataItems/"
+syncdir="/opt/appdata/plex/database/Library/Application Support/Plex Media Server/Cache/Transcode/Sync+/"
 if [ -d "$syncdir" ]
 then
-anidbsize=$(du -hs "$syncdir" | cut -f1)
+syncsize=$(du -hs "$syncdir" | cut -f1)
 while true; do
 
 cat <<EOF
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Synced items are using: $syncdir - Wanna remove them?
+Synced items are using: $syncsize - Wanna get rid of them?
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
     [Y]  :   Yeah, burn 'em! 🔥
