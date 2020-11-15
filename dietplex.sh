@@ -1,12 +1,12 @@
 #!/bin/bash
 echo
 cat <<EOF
-         _____________     _____               ______            
+         _____________     _____               ______
          ______  /__(_)______  /_      ___________  /________  __
          _  __  /__  /_  _ \  __/_________  __ \_  /_  _ \_  |/_/
-         / /_/ / _  / /  __/ /_ _/_____/_  /_/ /  / /  __/_>  <  
-         \__,_/  /_/  \___/\__/        _  .___//_/  \___//_/|_|  
-                                       /_/                       
+         / /_/ / _  / /  __/ /_ _/_____/_  /_/ /  / /  __/_>  <
+         \__,_/  /_/  \___/\__/        _  .___//_/  \___//_/|_|
+                                       /_/
 EOF
 echo
 cat <<EOF
@@ -69,12 +69,15 @@ functionx () {
 while IFS= read -r line
 do
 if [[ "$line" =~ .*"com.plexapp.agents.thetvdb".*"thumbs".* ]]; then rm -rf "$line" -v | tee -a ./dietplex.log; fi
+if [[ "$line" =~ .*"com.plexapp.agents.localmedia".*"thumbs".* ]]; then rm -rf "$line" -v | tee -a ./dietplex.log; fi
 if [[ "$line" =~ .*"com.plexapp.agents.thetvdb".*"posters".* ]]; then rm -rf "$line" -v | tee -a ./dietplex.log; fi
 if [[ "$line" =~ .*"com.plexapp.agents.themoviedb".*"posters".* ]]; then rm -rf "$line" -v | tee -a ./dietplex.log; fi
 if [[ "$line" =~ .*"com.plexapp.agents.imdb".*"posters".* ]]; then rm -rf "$line" -v | tee -a ./dietplex.log; fi
+if [[ "$line" =~ .*"com.plexapp.agents.localmedia".*"posters".* ]]; then rm -rf "$line" -v | tee -a ./dietplex.log; fi
 if [[ "$line" =~ .*"com.plexapp.agents.thetvdb".*"art".* ]]; then rm -rf "$line" -v | tee -a ./dietplex.log; fi
 if [[ "$line" =~ .*"com.plexapp.agents.themoviedb".*"art".* ]]; then rm -rf "$line" -v | tee -a ./dietplex.log; fi
 if [[ "$line" =~ .*"com.plexapp.agents.imdb".*"art".* ]]; then rm -rf "$line" -v | tee -a ./dietplex.log; fi
+if [[ "$line" =~ .*"com.plexapp.agents.localmedia".*"art".* ]]; then rm -rf "$line" -v | tee -a ./dietplex.log; fi
 if [[ "$line" =~ .*"bundle".*"Uploads".* ]]; then rm -rf "$line" -v | tee -a ./dietplex.log; fi
 
 counter=$((counter+1))
