@@ -1,20 +1,30 @@
 #!/bin/bash
-echo "Calculating weight. This might take a while"
-sleep 2
-echo "Go grab something to drink while you wait."
-sleep 2
-echo "...maybe something with zero sugar."
-sleep 1
-plexdir="/opt/appdata/plex/database/Library/Application Support/Plex Media Server/"
-plexsize=$(du -hs "$plexdir" | cut -f1)
-
+echo
+cat <<EOF
+         _____________     _____               ______            
+         ______  /__(_)______  /_      ___________  /________  __
+         _  __  /__  /_  _ \  __/_________  __ \_  /_  _ \_  |/_/
+         / /_/ / _  / /  __/ /_ _/_____/_  /_/ /  / /  __/_>  <  
+         \__,_/  /_/  \___/\__/        _  .___//_/  \___//_/|_|  
+                                       /_/                       
+EOF
+echo
 cat <<EOF
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
      Diet-Plex     |     Extensive Plex Maintenance     |      v1.2.1
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-                  https://github.com/morganzero/diet-plex/              
+                  https://github.com/morganzero/diet-plex/
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 EOF
+echo
+echo "Calculating weight. This will take a while."
+sleep 2
+echo "Grab a drink while you wait."
+sleep 2
+echo "...maybe something with zero sugar!"
+
+plexdir="/opt/appdata/plex/database/Library/Application Support/Plex Media Server/"
+plexsize=$(du -hs "$plexdir" | cut -f1)
 
 metadatadir="/opt/appdata/plex/database/Library/Application Support/Plex Media Server/Metadata/"
 if [ -d "$metadatadir" ]
