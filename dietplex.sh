@@ -81,10 +81,10 @@ if [[ "$line" =~ .*"Metadata"*.*"com.plexapp.agents.themoviedb".*"art".* ]]; the
 if [[ "$line" =~ .*"Metadata"*.*"com.plexapp.agents.imdb".*"art".* ]]; then rm -rf "$line" | tee -a ./dietplex.log; fi
 if [[ "$line" =~ .*"Metadata"*.*"com.plexapp.agents.localmedia".*"art".* ]]; then rm -rf "$line" | tee -a ./dietplex.log; fi
 if [[ "$line" =~ .*"Metadata"*.*"bundle".*"Uploads".* ]]; then rm -rf "$line" | tee -a ./dietplex.log; fi
-if [[ "$line" =~ .*"Media"*.*"thumbs*.jpg"* ]]; then rm -rf "$line" | tee -a ./dietplex.log; fi
-if [[ "$line" =~ .*"Media"*.*"index-sd.bif"* ]]; then rm -rf "$line" | tee -a ./dietplex.log; fi
-if [[ "$line" =~ .*"Media"*.*"chapter.jpg"* ]]; then rm -rf "$line" | tee -a ./dietplex.log; fi
-
+if [[ "$line" =~ .*"Media"*.*"localhost"*.*"thumbs*.jpg"* ]]; then rm -rf "$line" | tee -a ./dietplex.log; fi
+if [[ "$line" =~ .*"Media"*.*"localhost"*.*"index-sd.bif"* ]]; then rm -rf "$line" | tee -a ./dietplex.log; fi
+if [[ "$line" =~ .*"Media"*.*"localhost"*.*"chapter*.jpg"* ]]; then rm -rf "$line" | tee -a ./dietplex.log; fi
+if [[ "$line" =~ .*"Media"*.*"localhost"*.*"art*.jpg"* ]]; then rm -rf "$line" | tee -a ./dietplex.log; fi
 
 counter=$((counter+1))
 x=$(echo $(bc <<<"scale=2; $counter / $total * 100"))
@@ -206,7 +206,7 @@ Extreme diet finished.
 EOF
 
 sleep 1
-echo "Cleaning up ...🧹"
+echo "🧹 Cleaning up..."
 sleep 1
 echo
 
