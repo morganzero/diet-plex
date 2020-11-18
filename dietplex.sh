@@ -16,12 +16,6 @@ cat <<EOF
                   https://github.com/morganzero/diet-plex/
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 EOF
-echo
-echo "Calculating weight. This will take a while."
-sleep 2
-echo "Grab a drink while you wait."
-sleep 2
-echo "...maybe something with zero sugar!"
 
 plexdir="/opt/appdata/plex/database/Library/Application Support/Plex Media Server/"
 plexsize=$(du -hs "$plexdir" | cut -f1)
@@ -32,23 +26,29 @@ then
 metadatasize=$(du -hs "$metadatadir" | cut -f1)
 echo "Metadata           :  $metadatasize"
 fi
+mediadir="/opt/appdata/plex/database/Library/Application Support/Plex Media Server/Media/"
+if [ -d "$mediadir" ]
+then
+mediasize=$(du -hs "$mediadir" | cut -f1)
+echo "Contributed Media  :  $mediasize"
+fi
 transcoderdir="/opt/appdata/plex/database/Library/Application Support/Plex Media Server/Cache/PhotoTranscoder/"
 if [ -d "$transcoderdir" ]
 then
 transcodersize=$(du -hs "$transcoderdir" | cut -f1)
 echo "PhotoTranscoder    :  $transcodersize"
 fi
+syncdir="/opt/appdata/plex/database/Library/Application Support/Plex Media Server/Cache/Transcode/Sync+/"
+if [ -d "$syncdir" ]
+then
+syncsize=$(du -hs "$syncdir" | cut -f1)
+echo "Synced Media       :  $syncsize"
+fi
 anidbdir="/opt/appdata/plex/database/Library/Application Support/Plex Media Server/Plug-in Support/Data/com.plexapp.agents.hama/DataItems/"
 if [ -d "$anidbdir" ]
 then
 anidbsize=$(du -hs "$anidbdir" | cut -f1)
 echo "HAMA (Anidb)       :  $anidbsize"
-fi
-syncdir="/opt/appdata/plex/database/Library/Application Support/Plex Media Server/Cache/Transcode/Sync+/"
-if [ -d "$syncdir" ]
-then
-syncsize=$(du -hs "$syncdir" | cut -f1)
-echo "Metadata           :  $syncsize"
 fi
 echo
 echo "Total size         :  $plexsize"
@@ -57,7 +57,9 @@ cat <<EOF
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 EOF
 
-dir="/opt/appdata/plex/database/Library/Application Support/Plex Media Server/Metadata/"
+echo
+
+dir="/opt/appdata/plex/database/Library/Application Support/Plex Media Server/"
 find "$dir" -type d > metafolders.txt
 eplist="metafolders.txt"
 total=$(cat $eplist | wc  -l)
@@ -68,17 +70,21 @@ echo "Losing overweight:"
 functionx () {
 while IFS= read -r line
 do
-if [[ "$line" =~ .*"com.plexapp.agents.thetvdb".*"thumbs".* ]]; then rm -rf "$line" -v | tee -a ./dietplex.log; fi
-if [[ "$line" =~ .*"com.plexapp.agents.localmedia".*"thumbs".* ]]; then rm -rf "$line" -v | tee -a ./dietplex.log; fi
-if [[ "$line" =~ .*"com.plexapp.agents.thetvdb".*"posters".* ]]; then rm -rf "$line" -v | tee -a ./dietplex.log; fi
-if [[ "$line" =~ .*"com.plexapp.agents.themoviedb".*"posters".* ]]; then rm -rf "$line" -v | tee -a ./dietplex.log; fi
-if [[ "$line" =~ .*"com.plexapp.agents.imdb".*"posters".* ]]; then rm -rf "$line" -v | tee -a ./dietplex.log; fi
-if [[ "$line" =~ .*"com.plexapp.agents.localmedia".*"posters".* ]]; then rm -rf "$line" -v | tee -a ./dietplex.log; fi
-if [[ "$line" =~ .*"com.plexapp.agents.thetvdb".*"art".* ]]; then rm -rf "$line" -v | tee -a ./dietplex.log; fi
-if [[ "$line" =~ .*"com.plexapp.agents.themoviedb".*"art".* ]]; then rm -rf "$line" -v | tee -a ./dietplex.log; fi
-if [[ "$line" =~ .*"com.plexapp.agents.imdb".*"art".* ]]; then rm -rf "$line" -v | tee -a ./dietplex.log; fi
-if [[ "$line" =~ .*"com.plexapp.agents.localmedia".*"art".* ]]; then rm -rf "$line" -v | tee -a ./dietplex.log; fi
-if [[ "$line" =~ .*"bundle".*"Uploads".* ]]; then rm -rf "$line" -v | tee -a ./dietplex.log; fi
+if [[ "$line" =~ .*"Metadata"*.*"com.plexapp.agents.thetvdb".*"thumbs".* ]]; then rm -rf "$line" | tee -a ./dietplex.log; fi
+if [[ "$line" =~ .*"Metadata"*.*"com.plexapp.agents.localmedia".*"thumbs".* ]]; then rm -rf "$line" | tee -a ./dietplex.log; fi
+if [[ "$line" =~ .*"Metadata"*.*"com.plexapp.agents.thetvdb".*"posters".* ]]; then rm -rf "$line" | tee -a ./dietplex.log; fi
+if [[ "$line" =~ .*"Metadata"*.*"com.plexapp.agents.themoviedb".*"posters".* ]]; then rm -rf "$line" | tee -a ./dietplex.log; fi
+if [[ "$line" =~ .*"Metadata"*.*"com.plexapp.agents.imdb".*"posters".* ]]; then rm -rf "$line" | tee -a ./dietplex.log; fi
+if [[ "$line" =~ .*"Metadata"*.*"com.plexapp.agents.localmedia".*"posters".* ]]; then rm -rf "$line" | tee -a ./dietplex.log; fi
+if [[ "$line" =~ .*"Metadata"*.*"com.plexapp.agents.thetvdb".*"art".* ]]; then rm -rf "$line" | tee -a ./dietplex.log; fi
+if [[ "$line" =~ .*"Metadata"*.*"com.plexapp.agents.themoviedb".*"art".* ]]; then rm -rf "$line" | tee -a ./dietplex.log; fi
+if [[ "$line" =~ .*"Metadata"*.*"com.plexapp.agents.imdb".*"art".* ]]; then rm -rf "$line" | tee -a ./dietplex.log; fi
+if [[ "$line" =~ .*"Metadata"*.*"com.plexapp.agents.localmedia".*"art".* ]]; then rm -rf "$line" | tee -a ./dietplex.log; fi
+if [[ "$line" =~ .*"Metadata"*.*"bundle".*"Uploads".* ]]; then rm -rf "$line" | tee -a ./dietplex.log; fi
+if [[ "$line" =~ .*"Media"*.*"thumbs*.jpg"* ]]; then rm -rf "$line" | tee -a ./dietplex.log; fi
+if [[ "$line" =~ .*"Media"*.*"index-sd.bif"* ]]; then rm -rf "$line" | tee -a ./dietplex.log; fi
+if [[ "$line" =~ .*"Media"*.*"chapter.jpg"* ]]; then rm -rf "$line" | tee -a ./dietplex.log; fi
+
 
 counter=$((counter+1))
 x=$(echo $(bc <<<"scale=2; $counter / $total * 100"))
@@ -206,7 +212,7 @@ echo
 
 cat <<EOF
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-⭐ New Plex Size is  : $plexsize
+🍻 New Plex Size is  : $plexsize
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 EOF
 echo
