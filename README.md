@@ -7,7 +7,7 @@ A crazy bash script that deletes all duplicate metadata entries in Plex. Leaving
 The script is optimized and aligned to work with MHA/PTS/PG systems. You can edit it to suit your needs.
 
 ### Good to know:
-It will also delete manually uploaded posters as those aren't recognized by PMS to be default posters.
+It will unfortunately delete manually uploaded posters as those aren't recognized by PMS to be default posters.
 
 # Getting started
 
