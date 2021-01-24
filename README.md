@@ -4,7 +4,10 @@ Great for users with huge libraries.
 
 A crazy bash script that deletes all duplicate metadata entries in Plex. Leaving only the display cover and art intact and downsizing the DB.
 
-The script is optimized and aligned to work with PTS/PGBlitz. You can edit it to suit your needs.
+The script is optimized and aligned to work with MHA/PTS/PG systems. You can edit it to suit your needs.
+
+### Good to know:
+It will also delete manually uploaded posters as those aren't recognized by PMS to be default posters.
 
 # Getting started
 
